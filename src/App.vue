@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <div class="title">dddsss</div>
-    <p>dddssx</p>
     <router-view/>
   </div>
 </template>

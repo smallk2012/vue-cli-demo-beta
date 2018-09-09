@@ -19,13 +19,13 @@ localhost:~ cc$ vue -V
 ```
 win系统：任何空白处，按住Shift键不放，点击鼠标右键，打开命令框
 mac os系统：打开终端
-输入npm install -g vue-cli@2.9.6 ~~[已安跳过]~~
+输入npm install -g vue-cli@2.9.6 [已安跳过]
 ```
 >第三步：安装webpack
 ```
 win系统：任何空白处，按住Shift键不放，点击鼠标右键，打开命令框
 mac os系统：打开终端
-输入npm install -g webpack@3.9.1 ~~[已安跳过]~~
+输入npm install -g webpack@3.9.1 [已安跳过]
 ```
 >第四步：下载本git，终端执行 npm install
 ```
@@ -36,7 +36,8 @@ mac os系统：打开终端
 5.封装了请求方法
 6.实现mock数据调用
 7.css使用的是sass编写<style scoped lang="scss">
-8.支持vuex，需要使用的话，在main.js里修改注释
+8.支持vuex，需要使用的话，在main.js里修改注释，使用方法在HelloWorld.vue文件
+9.默认使用Eslint，可以在config/index.js里设置useEslint = false
 ```
 >第五步：扩展其他插件
 ```

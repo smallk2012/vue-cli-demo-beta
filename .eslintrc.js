@@ -28,6 +28,7 @@ module.exports = {
     "eqeqeq": 0,//不使用全等
     // allow async-await
     'generator-star-spacing': 'off',
+    "no-console": 2,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }

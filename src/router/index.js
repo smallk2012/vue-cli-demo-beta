@@ -16,6 +16,7 @@ router.beforeEach((to, from, next) => {
       next()
     }
     */
+    // console.log(Vue.prototype.$api) // eslint-disable-next-line
     next()
 })
 export default router

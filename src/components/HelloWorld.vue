@@ -1,62 +1,13 @@
 <template>
-    <div class="hello">
-        <h1>{{ msg }}</h1>
-        <h2>Essential Links</h2>
-        <ul>
-            <li>
-                <a href="https://vuejs.org" target="_blank">
-                    Core Docs
-                </a>
-            </li>
-            <li>
-                <a href="https://forum.vuejs.org" target="_blank">
-                    Forum
-                </a>
-            </li>
-            <li>
-                <a href="https://chat.vuejs.org" target="_blank">
-                    Community Chat
-                </a>
-            </li>
-            <li>
-                <a href="https://twitter.com/vuejs" target="_blank">
-                    Twitter
-                </a>
-            </li>
-            <br>
-            <li>
-                <a href="http://vuejs-templates.github.io/webpack/" target="_blank">
-                    Docs for This Template
-                </a>
-            </li>
-        </ul>
-        <h2>Ecosystem</h2>
-        <ul>
-            <li>
-                <a href="http://router.vuejs.org/" target="_blank">
-                    vue-router
-                </a>
-            </li>
-            <li>
-                <a href="http://vuex.vuejs.org/" target="_blank">
-                    vuex
-                </a>
-            </li>
-            <li>
-                <a href="http://vue-loader.vuejs.org/" target="_blank">
-                    vue-loader
-                </a>
-            </li>
-            <li>
-                <a href="https://github.com/vuejs/awesome-vue" target="_blank">
-                    awesome-vue
-                </a>
-            </li>
-        </ul>
-    </div>
+    <div class="page">
+        <div class="demo">{{msg}}</div>
+        <input type="text" v-model="keyword" placeholder="测试vuex双向绑定" />
+    <div>{{keyWord}}</div>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import tool from '../util/tool'
 import __aw__ from '../util/md5.js'
 
@@ -64,12 +15,42 @@ export default {
     name: 'HelloWorld',
     data () {
         return {
-            msg: 'Welcome to Your Vue.js App1'
+            msg: '如何使用vuex，自行看文档'
+        }
+    },
+    computed: {
+        ...mapGetters('app', {
+            keyWord: 'keyWord',
+            loading: 'islogined'
+        }),
+        keyword: {
+            get () {
+                return this.keyWord
+            },
+            set (value) {
+                this.$store.dispatch('app/setKeyWord', value)
+            }
         }
     },
     methods: {
         aa () {
-            console.log(__aw__(tool.kNumFormat(123456)))
+            this.$api.log(__aw__(tool.kNumFormat(123456)))
+
+            this.$api.get(
+                '/ip',
+                res => {
+                    this.$api.log(res)
+                    this.$api.log(this.xx[0].x)
+                },
+                { a: 'xxds' }
+            )
+            this.$api.post(
+                '/post',
+                res => {
+                    this.$api.log(res)
+                },
+                { a: 'cc' }
+            )
         }
     },
     mounted () {

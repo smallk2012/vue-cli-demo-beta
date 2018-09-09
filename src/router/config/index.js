@@ -6,6 +6,11 @@ export default {
             component: () => import('@/components/HelloWorld')
         },
         {
+            path: '/home',
+            name: 'Home',
+            component: () => import('@/pages/Home')
+        },
+        {
             path: '*',
             redirect: {
                 path: '/'
