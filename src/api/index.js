@@ -49,5 +49,5 @@ let api = {
 // 把config的字段合并为api的一部分
 Object.assign(api, cf)
 // 把url的字段合并为api的一部分
-Object.assign(api, url)
+Object.assign(api, { url })
 export default api
