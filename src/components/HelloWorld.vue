@@ -35,9 +35,9 @@ export default {
     methods: {
         aa () {
             this.$api.log(__aw__(tool.kNumFormat(123456)))
-
+            this.$api.log(this.$api.url)
             this.$api.get(
-                '/ip',
+                this.$api.url.login,
                 res => {
                     this.$api.log(res)
                     this.$api.log(this.xx[0].x)
