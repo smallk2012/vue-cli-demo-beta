@@ -2,8 +2,7 @@ import axios from 'axios'
 import cf from './config'
 import url from './url'
 import Qs from 'qs' // 必须引入这个处理post参数不然后端接收不到
-import './interceptors/request'
-import './interceptors/response'
+import './interceptors'
 
 function apiAxios (__method, __url, __callback, __params) {
     let _url = api.mock ? './static/mock' + __url + '.json' : __url
