@@ -47,13 +47,7 @@ axios.interceptors.response.use(response => {
     // 使用reject就直接报异常不往下执行
     /*
     if (axios.isCancel(err)) {
-        return Promise.resolve({
-            data () {
-                return {
-                    msg: '重复请求'
-                }
-            }
-        })
+        return Promise.reject(err)
     }
     */
     return Promise.resolve(err.response || { data: {} })
