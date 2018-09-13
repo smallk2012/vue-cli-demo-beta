@@ -11,17 +11,15 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            // 这里的意思是接口的统一替换符
-            // 在项目里面所有接口统一以/api开头
-            // 那么就会把/api自动换成http://yingzaiqidian.cn/api跨越请求
+            // 登录接口:http://www.yingzaiqidian.cn/api/login
+            // 新闻接口:http://www.yingzaiqidian.cn/api/news
+            // 配置里的baseURL写为/api,那么'^/api': ''需写为'^/api': '/api'
+            // 不然实际请求会变为 http://www.yingzaiqidian.cn/login
+            // 配置里的baseURL写为/wx,那么'^/api': ''不需要动，'/api'修改为'/wx'即可
             '/api': {
                 target: 'http://yingzaiqidian.cn', // 接口的服务器地址
                 changeOrigin: true,
                 pathRewrite: {
-                    // 这里的意思是/api是真实接口url是不存在的
-                    // ^/api:''就是把/api替换为''，上面的不是/api，这里可以不需要修改
-                    // 看到的是 http://localhost:8080/api/login
-                    // 实际访问的是 http://localhost:8080/login
                     '^/api': ''
                 }
             }

@@ -24,8 +24,7 @@ function apiAxios (__method, __url, __callback, __params) {
                 api.log('请求方法：' + __method)
                 api.log('请求链接：' + _baseURL + _url)
                 api.log('请求参数：' + JSON.stringify(__params))
-                // api.log(res)
-                // api.log(JSON.stringify(res.data || {}))
+                api.log(res)
             }
             __callback && __callback(api.callBack(res))
         })
@@ -38,11 +37,19 @@ let api = {
     post: (__url, __callback, __params) => {
         return apiAxios('POST', __url, __callback, __params)
     },
-    promiseGet: (_url, _params) => {
-        return ''
+    promiseGet: (__url, __params) => {
+        return new Promise((resolve, reject) => {
+            apiAxios('GET', __url, res => {
+                resolve(res)
+            }, __params)
+        })
     },
-    promisePost: (url, params) => {
-        return ''
+    promisePost: (__url, __params) => {
+        return new Promise((resolve, reject) => {
+            apiAxios('POST', __url, res => {
+                resolve(res)
+            }, __params)
+        })
     }
 }
 // 把config的字段合并为api的一部分

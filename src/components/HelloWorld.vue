@@ -33,28 +33,31 @@ export default {
         }
     },
     methods: {
-        aa () {
+        demo () {
             this.$api.log(__aw__(tool.kNumFormat(123456)))
             this.$api.log(this.$api.url)
             this.$api.get(
-                this.$api.url.login,
+                this.$api.url.ip,
                 res => {
-                    this.$api.log(res)
-                    this.$api.log(this.xx[0].x)
+                },
+                { a: 'xxds' }
+            )
+            this.$api.get(
+                this.$api.url.ip,
+                res => {
                 },
                 { a: 'xxds' }
             )
             this.$api.post(
                 '/post',
                 res => {
-                    this.$api.log(res)
                 },
                 { a: 'cc' }
             )
         }
     },
     mounted () {
-        this.aa()
+        this.demo()
     }
 }
 </script>

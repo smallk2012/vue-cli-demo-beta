@@ -41,11 +41,20 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(response => {
     // 对响应数据做点什么
     removePending(response.config) // 在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中移除
-    // eslint-disable-next-line
-    console.log(response)
     return response
 }, (err) => {
     // 对响应错误做点什么
     // 使用reject就直接报异常不往下执行
-    return Promise.resolve(err.response)
+    /*
+    if (axios.isCancel(err)) {
+        return Promise.resolve({
+            data () {
+                return {
+                    msg: '重复请求'
+                }
+            }
+        })
+    }
+    */
+    return Promise.resolve(err.response || { data: {} })
 })
