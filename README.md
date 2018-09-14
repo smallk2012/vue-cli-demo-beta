@@ -46,28 +46,60 @@ mac os系统：打开终端
 在static/css目录有默认的重置rest.css，需要的话可以在index.html或main.js引入
 移动端使用rem开发，只需在index.html里head加入
 https://www.cnblogs.com/Mrs-pao/p/7932207.html
-//e:设计稿的实际宽度值，需要根据实际设置
-//t:制作稿的最大宽度值，需要根据实际设置
+<script>
+    //designWidth:设计稿的实际宽度值，需要根据实际设置
+    //maxWidth:制作稿的最大宽度值，需要根据实际设置
+    //这段js的最后面有两个参数记得要设置，一个为设计稿实际宽度，一个为制作稿最大宽度，例如设计稿为750，最大宽度为750，则为(750,750)
+    ; (function (designWidth, maxWidth) {
+        var doc = document,
+            win = window,
+            docEl = doc.documentElement,
+            remStyle = document.createElement("style"),
+            tid;
+
+        function refreshRem() {
+            var width = docEl.getBoundingClientRect().width;
+            maxWidth = maxWidth || 540;
+            width > maxWidth && (width = maxWidth);
+            var rem = width * 100 / designWidth;
+            remStyle.innerHTML = 'html{font-size:' + rem + 'px !important;}';
+        }
+
+        if (docEl.firstElementChild) {
+            docEl.firstElementChild.appendChild(remStyle);
+        } else {
+            var wrap = doc.createElement("div");
+            wrap.appendChild(remStyle);
+            doc.write(wrap.innerHTML);
+            wrap = null;
+        }
+        //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+        refreshRem();
+
+        win.addEventListener("resize", function () {
+            clearTimeout(tid); //防止执行两次
+            tid = setTimeout(refreshRem, 300);
+        }, false);
+
+        win.addEventListener("pageshow", function (e) {
+            if (e.persisted) { // 浏览器后退的时候重新计算
+                clearTimeout(tid);
+                tid = setTimeout(refreshRem, 300);
+            }
+        }, false);
+
+        if (doc.readyState === "complete") {
+            doc.body.style.fontSize = "16px";
+        } else {
+            doc.addEventListener("DOMContentLoaded", function (e) {
+                doc.body.style.fontSize = "16px";
+            }, false);
+        }
+    })(750, 750);
+</script>
+//压缩以后的
 <script type="text/javascript">
-	!function (e, t) {
-		function n() {
-			var n = l.getBoundingClientRect().width;
-			t = t || 540, n > t && (n = t);
-			var i = 100 * n / e;
-			r.innerHTML = "html{font-size:" + i + "px;}"
-		}
-		var i, d = document, o = window, l = d.documentElement, r = document.createElement("style");
-		if (l.firstElementChild) l.firstElementChild.appendChild(r);
-		else {
-		var a = d.createElement("div");
-			a.appendChild(r), d.write(a.innerHTML), a = null
-		} n(), o.addEventListener("resize", function () {
-			clearTimeout(i), i = setTimeout(n, 300)
-		}, !1), o.addEventListener("pageshow", function (e) {
-			e.persisted && (clearTimeout(i), i = setTimeout(n, 300))
-		}, !1), "complete" === d.readyState ? d.body.style.fontSize = "16px" : d.addEventListener("DOMContentLoaded", function (e {
-			d.body.style.fontSize = "16px"
-		}, !1)
-	}(750, 750);
+    //引入该flexible.min.js
+    !function (e, t) { function n() { var n = l.getBoundingClientRect().width; t = t || 540, n > t && (n = t); var i = 100 * n / e; r.innerHTML = "html{font-size:" + i + "px !important;}" } var i, d = document, o = window, l = d.documentElement, r = document.createElement("style"); if (l.firstElementChild) l.firstElementChild.appendChild(r); else { var a = d.createElement("div"); a.appendChild(r), d.write(a.innerHTML), a = null } n(), o.addEventListener("resize", function () { clearTimeout(i), i = setTimeout(n, 300) }, !1), o.addEventListener("pageshow", function (e) { e.persisted && (clearTimeout(i), i = setTimeout(n, 300)) }, !1), "complete" === d.readyState ? d.body.style.fontSize = "16px" : d.addEventListener("DOMContentLoaded", function (e) { d.body.style.fontSize = "16px" }, !1) }(750, 750);
 </script>
 ```
