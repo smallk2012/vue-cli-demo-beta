@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+/*
 let pending = [] // 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
 let removePending = (config) => {
     for (let p in pending) {
@@ -9,6 +9,7 @@ let removePending = (config) => {
         }
     }
 }
+*/
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
     // 在发送请求之前做些什么
@@ -26,11 +27,14 @@ axios.interceptors.request.use(config => {
             token: _token
         }
     }
+    /*
+    // 暂时不用这样取消重复操作方法，因为response.use使用Promise.reject(err)处理，浏览器会标红，本人不习惯，而且回调方法还得做额外处理。。。太麻烦了
     removePending(config) // 在一个ajax发送前执行一下取消操作
     config.cancelToken = new axios.CancelToken((c) => {
         // 这里的ajax标识我是用请求地址&请求方式拼接的字符串，当然你可以选择其他的一些方式
         pending.push({ u: config.url + '&' + config.method, f: c })
     })
+    */
     return config
 }, err => {
     // 对请求错误做些什么
@@ -40,7 +44,7 @@ axios.interceptors.request.use(config => {
 // 添加响应拦截器
 axios.interceptors.response.use(response => {
     // 对响应数据做点什么
-    removePending(response.config) // 在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中移除
+    // removePending(response.config) // 在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中移除
     return response
 }, (err) => {
     // 对响应错误做点什么

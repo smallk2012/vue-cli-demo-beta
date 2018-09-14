@@ -5,6 +5,24 @@ import Qs from 'qs' // 必须引入这个处理post参数不然后端接收不�
 import './interceptors'
 
 function apiAxios (__method, __url, __callback, __params) {
+    __params = __params || {}
+    __url = __url || ''
+    // 获取最后一个/后面的字段
+    let _field = __url.substring(__url.lastIndexOf('/') + 1, __url.length)
+    let _tagField = __url.substring(0, __url.lastIndexOf('/'))
+
+    if (_tagField.lastIndexOf('/') != -1) {
+        // 避免最后一个/后面的字段重复，取倒数第二个
+        _field = _tagField.substring(_tagField.lastIndexOf('/') + 1, _tagField.length) + _field
+    }
+    let _key = _field
+    // 阻止联系点击
+    if (isDouble(_key, __params)) {
+        return false
+    } else {
+        hash[_key] = __params
+    }
+
     let _url = api.mock ? './static/mock' + __url + '.json' : __url
     let _baseURL = api.mock ? '' : api.baseURL
     axios({
@@ -20,16 +38,31 @@ function apiAxios (__method, __url, __callback, __params) {
         }
     })
         .then(function (res) {
-            if (api.debug) {
-                api.log('请求方法：' + __method)
-                api.log('请求链接：' + _baseURL + _url)
-                api.log('请求参数：' + JSON.stringify(__params))
-                api.log(res)
-            }
+            delHash(_key, __params)
+            api.log('请求方法：' + __method)
+            api.log('请求链接：' + _baseURL + _url)
+            api.log('请求参数：' + JSON.stringify(__params))
+            api.log(JSON.stringify(res.data))
             __callback && __callback(api.callBack(res))
         })
 }
-
+/**
+ * 处理多次操作
+ */
+let hash = {}
+const isDouble = (_key, _value) => {
+    let _bl = false
+    for (let o in hash) {
+        if (o == _key && hash[o] && JSON.stringify(hash[o]) == JSON.stringify(_value)) {
+            _bl = true
+            break
+        }
+    }
+    return _bl
+}
+const delHash = (_key, _value) => {
+    if (hash[_key] && JSON.stringify(hash[_key]) == JSON.stringify(_value)) delete hash[_key]
+}
 let api = {
     get: (__url, __callback, __params) => {
         return apiAxios('GET', __url, __callback, __params)

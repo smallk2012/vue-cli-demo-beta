@@ -45,6 +45,9 @@ mac os系统：打开终端
 需要什么UI框架，可以自行npm install，然后参照官方文档使用
 在static/css目录有默认的重置rest.css，需要的话可以在index.html或main.js引入
 移动端使用rem开发，只需在index.html里head加入
+https://www.cnblogs.com/Mrs-pao/p/7932207.html
+//e:设计稿的实际宽度值，需要根据实际设置
+//t:制作稿的最大宽度值，需要根据实际设置
 <script type="text/javascript">
 	!function (e, t) {
 		function n() {
