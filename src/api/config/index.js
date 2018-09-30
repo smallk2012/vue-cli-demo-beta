@@ -4,6 +4,7 @@
 const debug = true
 /**
  * mock = true 开启模拟数据
+ * 为了方便入门使用mock数据，默认开启
  */
 const mock = true
 /**
@@ -21,6 +22,8 @@ const baseURL = '/api'
  * callBack 接口统一回调
  */
 const callBack = (__res) => {
+    // 请求正常、请求异常等等都会通过这里，所以你可以在这里做你想做的
+    // __res.data 是接口返回的数据，可以根据需求做对应的操作
     let _obj = __res.data.code ? __res.data : {}
 
     if (_obj && _obj.code) {

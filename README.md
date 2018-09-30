@@ -1,5 +1,60 @@
 # vue-cli-demo-beta
 
+```
+//[*]为本脚手架每次新项目中必动地方，反之建议不需要动。
+
+├── build/                      
+│   └── ...
+├── config/                     
+│   ├── index.js                # 跨域配置[*]
+│   └── ...
+├── src/
+│   ├── api/                    
+│   │   ├── config/             
+│   │   │   └── index.js        # 请求配置[*]
+│   │   ├── interceptors/       
+│   │   │   └── index.js        # 请求拦截器
+│   │   ├── url/                
+│   │   │   └── index.js        # 请求链接[*]
+│   │   └── index.js            # 请求方法
+│   ├── assets/                 
+│   │   ├── _var.scss           # css配置
+│   │   └── ...                 # 存放webpack打包处理的资源，如需要压缩的图片。
+│   ├── components/             
+│   │   └── ...                 # 项目组件
+│   ├── modules/                
+│   │   └── ...                 # 页面模块组件
+│   ├── pages/                  
+│   │   └── ...                 # 页面[*]
+│   ├── router/                 
+│   │   ├── config              # 路由页面配置[*]
+│   │   └── index.js            # 路由页面逻辑处理[*]
+│   ├── util/                 
+│   │   ├── mds.js              # 路由页面配置
+│   │   ├── storage.js          # localStorage和sessionStorage
+│   │   └── tool.js             # 一些常用的方法
+│   ├── vuex/                 
+│   │   ├── modules/
+│   │   │   └── ...             # 数据文件
+│   │   └── store.js            # 使用配置
+│   ├── App.vue                 # 页面入口,可以把全局样式放这里[*]
+│   └── main.js                 # 全局插件引入入口[*]
+├── static/                     
+│   ├── css/                 
+│   │   └── ...                 # 一般都是静态css，不需要压缩的
+│   ├── img/ 
+│   │   └── ...                 # 整个项目图片资源
+│   ├── js/ 
+│   │   └── ...                 # 不需求npm i 就可以直接使用的js
+│   └── mock/                   
+│       └── ...                 # 存放所有mock数据的json
+├── .babelrc                    # babel config
+├── .editorconfig.js            # editor config
+├── .eslintrc.js                # eslint config
+├── index.html                  # index.html template
+└── package.json                # build scripts and dependencies
+```
+
 > 统一开发环境
 
 ```
