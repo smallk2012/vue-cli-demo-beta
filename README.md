@@ -89,7 +89,7 @@ mac os系统：打开终端
 3.已经处理了打包路径问题
 4.实现动态加载路由
 5.封装了请求方法
-6.实现mock数据调用
+6.实现mock数据调用，默认开启
 7.css使用的是sass编写<style scoped lang="scss">
 8.支持vuex，需要使用的话，在main.js里修改注释，使用方法在HelloWorld.vue文件
 9.默认使用Eslint，可以在config/index.js里设置useEslint = false
