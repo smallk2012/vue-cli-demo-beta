@@ -45,10 +45,6 @@ const numUnitFormat = (__num, __floatCount) => {
     if (!__num || isNaN(Number(__num))) return __num
     if (__num >= 100000000) {
         __num = numFloadtCount((__num / 100000000), __floatCount) + '亿'
-    } else if (__num >= 10000000) {
-        __num = numFloadtCount((__num / 10000000), __floatCount) + '千万'
-    } else if (__num >= 1000000) {
-        __num = numFloadtCount((__num / 1000000), __floatCount) + '百万'
     } else if (__num >= 10000) {
         __num = numFloadtCount((__num / 10000), __floatCount) + '万'
     } else {
@@ -63,7 +59,9 @@ const numUnitFormat = (__num, __floatCount) => {
  * @param {0取0} __zeroLimit
  */
 const numFloadtCount = (__num, __floatCount, __zeroLimit) => {
-    if (__zeroLimit) return __num
+    if (__zeroLimit && __num == 0){
+        return __num;
+    }
     return __num.toFixed(__floatCount)
 }
 /**
