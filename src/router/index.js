@@ -4,19 +4,20 @@ import config from './config'
 
 Vue.use(Router)
 const router = new Router(config)
+let _this = Vue.prototype
 router.beforeEach((to, from, next) => {
-    /*
+    // 这里写你的一些页面跳转控制逻辑
+    _this.$api.log(to)
     if (to.path == '/login') {
-      sessionStorage.removeItem('user');
-    }
-    let user = JSON.parse(sessionStorage.getItem('user'))
-    if (!user && to.path != '/login') {
-      next({ path: '/login' })
+        _this.$session.del('token')
+        next()
     } else {
-      next()
+        if (to.query.token || _this.$session.get('token')) {
+            // 登录了
+            next()
+        } else {
+            next('/login')
+        }
     }
-    */
-    // console.log(Vue.prototype.$api) // eslint-disable-next-line
-    next()
 })
 export default router

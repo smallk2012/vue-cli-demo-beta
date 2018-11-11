@@ -2,20 +2,18 @@
     <div class="page">
         <div class="demo">{{msg}}</div>
         <input type="text" v-model="keyword" placeholder="测试vuex双向绑定" />
-    <div>{{keyWord}}</div>
-  </div>
+        <div>{{keyWord}}</div>
+    </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import tool from '../util/tool'
-import __aw__ from '../util/md5.js'
 
 export default {
     name: 'HelloWorld',
     data () {
         return {
-            msg: '如何使用vuex，自行看文档'
+            msg: 'demo如何使用vuex，自行看文档'
         }
     },
     computed: {
@@ -34,26 +32,24 @@ export default {
     },
     methods: {
         demo () {
-            this.$api.log(__aw__(tool.kNumFormat(123456)))
             this.$api.log(this.$api.url)
             this.$api.get(
-                this.$api.url.ip,
+                this.$api.url.login,
                 res => {
+                    this.$api.log('123', '32es', res)
                 },
-                { a: 'xxds' }
+                { acc: 'cC' }
             )
             this.$api.get(
-                this.$api.url.ip,
+                this.$api.url.login,
                 res => {
                 },
-                { a: 'xxds' }
+                { acc: 'cC' }
             )
-            this.$api.post(
-                '/post',
-                res => {
-                },
-                { a: 'cc' }
-            )
+            this.$local.set('cC', '2018')
+            this.$api.log(this.$local.get('cC'))
+            this.$session.set('cC', 2018)
+            this.$api.log(this.$session.get('cC'))
         }
     },
     mounted () {
@@ -62,21 +58,5 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1,
-h2 {
-    font-weight: normal;
-}
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-li {
-    display: inline-block;
-    margin: 0 10px;
-}
-a {
-    color: #42b983;
-}
+<style scoped lang="scss">
 </style>

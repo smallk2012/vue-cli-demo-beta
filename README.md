@@ -12,8 +12,10 @@
 │   ├── api/                    
 │   │   ├── config/             
 │   │   │   └── index.js        # 请求配置[*]
-│   │   ├── interceptors/       
+│   │   ├── interceptors/             
 │   │   │   └── index.js        # 请求拦截器
+│   │   ├── lib/       
+│   │   │   └── ...             # 封装常用方法库
 │   │   ├── url/                
 │   │   │   └── index.js        # 请求链接[*]
 │   │   └── index.js            # 请求方法
@@ -29,10 +31,9 @@
 │   ├── router/                 
 │   │   ├── config              # 路由页面配置[*]
 │   │   └── index.js            # 路由页面逻辑处理[*]
-│   ├── util/                 
-│   │   ├── mds.js              # 路由页面配置
-│   │   ├── storage.js          # localStorage和sessionStorage
-│   │   └── tool.js             # 一些常用的方法
+│   ├── util/                   # util下存放的都是用户的自定义方法
+│   │   ├── md5.js              # md5加密方法
+│   │   └── tool.js             # 用户自定义的方法
 │   ├── vuex/                 
 │   │   ├── modules/
 │   │   │   └── ...             # 数据文件

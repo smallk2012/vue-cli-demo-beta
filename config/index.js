@@ -11,13 +11,12 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            // 登录接口:http://www.yingzaiqidian.cn/api/login
-            // 新闻接口:http://www.yingzaiqidian.cn/api/news
-            // 配置里的baseURL写为/api,那么'^/api': ''需写为'^/api': '/api'
-            // 不然实际请求会变为 http://www.yingzaiqidian.cn/login
-            // 配置里的baseURL写为/wx,那么'^/api': ''不需要动，'/api'修改为'/wx'即可
+            // 登录接口:http://www.yingzaiqidian.cn/wxcode/login
+            // 那么目录api里config的index.js的baseURL设置为'/api'
+            // 那么你看到的请求链接是http://localhost:8080/api/wxcode/login
+            // 实际请求的是http://www.yingzaiqidian.cn/wxcode/login
             '/api': {
-                target: 'http://yingzaiqidian.cn', // 接口的服务器地址
+                target: 'http://yingzaiqidian.cn',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''

@@ -9,13 +9,10 @@ const debug = true
 const mock = true
 /**
  * baseURL 接口统一默认入口
- * 登录接口:http://www.yingzaiqidian.cn/wx/login
- * 新闻接口:http://www.yingzaiqidian.cn/qq/news
- * 那么在proxyTable做跨越配置的时候，看到的链接是
- * http://localhost:8080/api/wx/login
- * http://localhost:8080/api/qq/news
- * /api就是作为一个统一替换符，实际上http://localhost:8080/api = http://www.yingzaiqidian.cn
- * 在.vue文件只需使用/wx/login和/qq/news相对路径
+ * 登录接口:http://www.yingzaiqidian.cn/wxcode/login
+ * 那么目录api里config的index.js的baseURL设置为'/api'
+ * 那么你看到的请求链接是http://localhost:8080/api/wxcode/login
+ * 实际请求的是http://www.yingzaiqidian.cn/wxcode/login
  */
 const baseURL = '/api'
 /**
@@ -41,10 +38,10 @@ const callBack = (__res) => {
  * 统一打印调用方法
  * @param {需要打印的参数} _param
  */
-const log = (__param) => {
+const log = (...__arguments) => {
     if (debug) {
         // eslint-disable-next-line
-        console.log(__param)
+        console.log.apply(this, __arguments)
     }
 }
 export default {

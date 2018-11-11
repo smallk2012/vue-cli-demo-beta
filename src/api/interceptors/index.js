@@ -1,4 +1,5 @@
 import axios from 'axios'
+import session from '@/extend/session'
 /*
 let pending = [] // 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
 let removePending = (config) => {
@@ -14,7 +15,11 @@ let removePending = (config) => {
 axios.interceptors.request.use(config => {
     // 在发送请求之前做些什么
     // 为了安全起见，不建议使用localStorage
-    let _token = sessionStorage.getItem('token') || ''
+    // 一般前后端验证靠token
+    // 如果你的验证字段不喊token
+    // 喊abc或有多个字段
+    // 那么session.set('token',{abc:'你的验证字段',acc:'cC'})
+    let _token = session.get('token')
     // ES6 扩展运算符 三个点
     // console.log(...[1, 2, 3])
     // 1 2 3
@@ -22,9 +27,10 @@ axios.interceptors.request.use(config => {
     // 1 2 3 4 5
     // 只有存在token的时候才会传，比如login的时候不需要
     if (_token) {
+        _token = typeof (_token) == 'string' ? { token: _token } : _token
         config.headers = {
             ...config.headers,
-            token: _token
+            ..._token
         }
     }
     /*
