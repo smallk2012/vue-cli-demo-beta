@@ -5,6 +5,7 @@ import router from './router'
 import local from './api/extend/local'
 import session from './api/extend/session'
 // 以下项目中不需要使用就注释掉
+import './api/extend/overwrite'
 import './api/extend/filter'
 import './api/extend/directive'
 import store from './vuex/store'

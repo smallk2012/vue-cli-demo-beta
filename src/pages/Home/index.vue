@@ -17,12 +17,13 @@ export default {
     name: 'Home',
     data () {
         return {
-            num: 1234567,
+            num: 1234567.5850,
             key: 'come',
             msg: 'Welcome'
         }
     },
     mounted () {
+        this.$api.log('重写后的toFixed:', this.num.toFixed(2))
     }
 }
 
