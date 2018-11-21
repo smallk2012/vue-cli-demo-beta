@@ -1,5 +1,5 @@
 import axios from 'axios'
-import session from '@/extend/session'
+import session from '@/api/extend/session'
 /*
 let pending = [] // 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
 let removePending = (config) => {
