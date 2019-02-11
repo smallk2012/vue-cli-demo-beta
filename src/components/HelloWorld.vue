@@ -32,11 +32,11 @@ export default {
     },
     methods: {
         demo () {
-            this.$api.log(this.$api.url)
+            this.$log(this.$api.url)
             this.$api.get(
                 this.$api.url.login,
                 res => {
-                    this.$api.log('123', '32es', res)
+                    this.$log('123', '32es', res)
                 },
                 { acc: 'cC' }
             )
@@ -47,9 +47,9 @@ export default {
                 { acc: 'cC' }
             )
             this.$local.set('cC', '2018')
-            this.$api.log(this.$local.get('cC'))
+            this.$log(this.$local.get('cC'))
             this.$session.set('cC', 2018)
-            this.$api.log(this.$session.get('cC'))
+            this.$log(this.$session.get('cC'))
         }
     },
     mounted () {

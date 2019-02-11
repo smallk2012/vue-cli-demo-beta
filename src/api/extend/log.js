@@ -9,6 +9,4 @@ const log = (...__arguments) => {
         console.log.apply(this, __arguments)
     }
 }
-export default {
-    log
-}
+export default log

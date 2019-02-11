@@ -2,6 +2,7 @@ import axios from 'axios'
 import cf from './config'
 import url from './url'
 import Qs from 'qs' // 必须引入这个处理post参数不然后端接收不到
+import log from './extend/log'
 import './interceptors'
 
 function apiAxios (__method, __url, __callback, __params) {
@@ -39,10 +40,10 @@ function apiAxios (__method, __url, __callback, __params) {
     })
         .then(function (res) {
             delHash(_key, __params)
-            api.log('请求方法：' + __method)
-            api.log('请求链接：' + _baseURL + _url)
-            api.log('请求参数：' + JSON.stringify(__params))
-            api.log(JSON.stringify(res.data))
+            log('请求方法：' + __method)
+            log('请求链接：' + _baseURL + _url)
+            log('请求参数：' + JSON.stringify(__params))
+            log(JSON.stringify(res.data))
             __callback && __callback(api.callBack(res))
         })
 }

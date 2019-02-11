@@ -23,8 +23,8 @@ export default {
         }
     },
     mounted () {
-        this.$api.log('重写后的toFixed:', this.num.toFixed(2))
-        this.$api.log('重写后的toFixed:', this.$filter.kNumFmt(this.num.toFixed(2)))
+        this.$log('重写后的toFixed:', this.num.toFixed(2))
+        this.$log('重写后的toFixed:', this.$filter.kNumFmt(this.num.toFixed(2)))
     }
 }
 

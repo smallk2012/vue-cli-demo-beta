@@ -16,9 +16,14 @@ export default {
     },
     methods: {
         clickLoginEvt () {
-            this.$session.set('token', 'cC')
-            this.$router.push({ path: '/home', query: { a: 'aaa' } })
-            // this.$router.push({name:"home",params:{a:'aaa'}})
+            this.$api.get(
+                this.$api.url.login,
+                res => {
+                    this.$session.set('token', 'cC')
+                    this.$router.push({ path: '/home', query: { a: 'aaa' } })
+                    // this.$router.push({name:"home",params:{a:'aaa'}})
+                }
+            )
         }
     },
     mounted () {
