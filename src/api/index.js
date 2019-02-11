@@ -27,10 +27,10 @@ function apiAxios (__method, __url, __callback, __params) {
     let _baseURL = api.mock ? '' : api.baseURL
     axios({
         // mock数据的时候，所有请求都会变为GET
-        method: api.mock ? 'GET' : __method,
+        method: api.mock ? 'GET' : (__method == 'POSTJSON' ? 'POST' : __method),
         url: _url,
         data: __method === 'POST' || __method === 'PUT' ? Qs.stringify(__params) : null,
-        params: __method === 'GET' || __method === 'DELETE' ? __params : null,
+        params: __method === 'POSTJSON' || __method === 'GET' || __method === 'DELETE' ? __params : null,
         baseURL: _baseURL,
         withCredentials: false,
         headers: {
@@ -69,6 +69,11 @@ let api = {
     },
     post: (__url, __callback, __params) => {
         return apiAxios('POST', __url, __callback, __params)
+    },
+    // postJson其实是post类型，ajax post默认Content-Type不是json，这类方法不建议使用
+    // 强制使用json，项目post接口出现2种类型以上，会对前后端联调带来麻烦
+    postJson: (__url, __callback, __params) => {
+        return apiAxios('POSTJSON', __url, __callback, __params)
     },
     promiseGet: (__url, __params) => {
         return new Promise((resolve, reject) => {

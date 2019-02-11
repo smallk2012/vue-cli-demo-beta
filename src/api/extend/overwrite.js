@@ -1,7 +1,7 @@
+/* eslint-disable */ 
 /**
  * 标准的四舍五入法
  */
-// eslint-disable-next-line
 Number.prototype.toFixed = function (d) {
     var s = this + ''
     if (!d) d = 0

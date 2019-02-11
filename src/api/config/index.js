@@ -34,20 +34,9 @@ const callBack = (__res) => {
     }
     return _obj
 }
-/**
- * 统一打印调用方法
- * @param {需要打印的参数} _param
- */
-const log = (...__arguments) => {
-    if (debug) {
-        // eslint-disable-next-line
-        console.log.apply(this, __arguments)
-    }
-}
 export default {
     debug,
     mock,
     baseURL,
-    callBack,
-    log
+    callBack
 }
