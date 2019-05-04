@@ -12,12 +12,12 @@ const kNumFmt = (__num) => {
     if (__num === undefined || __num === null || isNaN(__num) || __num === '') {
         return __num
     }
-    var _intPart = parseInt(__num) // 获取整数部分
+    var _splitAr = __num.toString().split('.')
+    var _intPart = _splitAr[0] // 获取整数部分
     _intPart = _intPart
         .toString()
         .replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') // 将整数部分逢三一断
     var _floatPart = '' // 预定义小数部分
-    var _splitAr = __num.toString().split('.')
     // =2表示数据有小数位
     if (_splitAr.length == 2) {
         _floatPart = '.' + _splitAr[1]

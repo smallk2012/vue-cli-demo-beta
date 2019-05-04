@@ -24,7 +24,7 @@ export default {
     },
     mounted () {
         this.$log('重写后的toFixed:', this.num.toFixed(2))
-        this.$log('重写后的toFixed:', this.$filter.kNumFmt(this.num.toFixed(2)))
+        this.$log('重写后的toFixed:', this.$filter.kNumFmt(-0.01))
     }
 }
 
