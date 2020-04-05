@@ -1,9 +1,20 @@
 export default {
     routes: [
         {
-            path: '/',
-            name: 'HelloWorld',
+            path: '*',
+            redirect: {
+                path: '/demo'
+            }
+        },
+        {
+            path: '/hello',
+            name: 'hello',
             component: () => import('@/components/HelloWorld')
+        },
+        {
+            path: '/demo',
+            name: 'demo',
+            component: () => import('@/pages/Demo')
         },
         {
             path: '/login',
@@ -14,12 +25,6 @@ export default {
             path: '/home',
             name: 'Home',
             component: () => import('@/pages/Home')
-        },
-        {
-            path: '*',
-            redirect: {
-                path: '/'
-            }
         }
     ]
 }
